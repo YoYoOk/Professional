@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    	
+	<LinearLayout 
+	    android:orientation="horizontal" 
+	    android:layout_width="match_parent" 
+	    android:layout_height="wrap_content"
+	    android:padding="8dp">
+        <TextView
+            android:id="@+id/tv_patient_item"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:text="text">
+        </TextView>
+    </LinearLayout>
+    <!--必须指定宽度-->
+    <TextView android:id="@+id/tv_patient_delete_item" 
+        android:layout_width="96dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp" 
+        android:text="删除" 
+        android:gravity="center"
+        android:layout_gravity="center_vertical"
+        android:textColor="#eeeeee" 
+        android:background="#e53935">
+    </TextView>
+</LinearLayout>

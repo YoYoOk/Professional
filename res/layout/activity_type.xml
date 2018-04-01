@@ -1,0 +1,120 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.yj.professional.activity.MainActivity" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="0dp"
+        android:background="@drawable/actionbar_bg"
+        android:orientation="vertical"
+        android:clipChildren="false">
+        <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="50dp"
+	        android:layout_margin="0dp"
+	        android:background="@drawable/actionbar_bg"
+	        android:orientation="horizontal">
+	        <ImageButton
+	            android:id="@+id/imgbtn_left_arrow" 
+	            android:layout_width="20dp"
+	            android:layout_height="20dp"
+	            android:layout_margin="10dp"
+	            android:layout_gravity="left|center_vertical"
+	            android:background="@drawable/left_arrow"/>
+	        <LinearLayout 
+	            android:layout_width="0dp"
+	            android:layout_height="50dp"
+	            android:layout_weight="1"
+	            android:gravity="center">
+	            <TextView 
+	            android:layout_width="wrap_content"
+	            android:layout_height="50dp"
+	            android:gravity="center"
+	            android:text="样本类型"
+	            android:textSize="24sp"/>
+	        </LinearLayout>
+	        <ImageButton android:id="@+id/imgbtn_add_choice_type"
+	            android:layout_width="20dp"
+	            android:layout_height="20dp"
+	            android:background="@drawable/add"
+	            android:layout_marginRight="10dp"
+	            android:layout_gravity="right|center_vertical"
+	            android:visibility="invisible"/>
+	     </LinearLayout>
+	     <!-- <ImageView 
+	         android:id="@+id/imgview_popupwindow"
+	         android:layout_width="wrap_content"
+	         android:layout_height="match_parent"
+	         android:layout_gravity="right"
+	         android:background="@drawable/popupwindow_select_conditon_bg"/> -->
+    </LinearLayout>
+    
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="样品名称"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"/>
+	
+    <EditText 
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/display_result_border"
+        android:gravity="center"
+        android:minHeight="40dp"
+        android:hint="请输入"/>
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="样品描述"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:textSize="20sp"/>
+	
+    <EditText 
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/display_result_border"
+        android:gravity="center_horizontal|top"
+        android:padding="5dp"
+        android:minHeight="100dp"
+        android:hint="请输入"/>
+    
+    <Button
+        android:id="@+id/btn_add_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:text="添加"
+        android:background="@drawable/bg"
+        android:layout_gravity="center_horizontal"/>
+    
+    <View  
+        android:layout_height="3px" 
+        android:layout_width="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="#68A8F2"/>
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+         <com.yj.professional.view.SideslipListView 
+             android:id="@+id/lv_type_list"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+             
+         </com.yj.professional.view.SideslipListView>
+    </LinearLayout>
+</LinearLayout>
