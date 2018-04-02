@@ -1,7 +1,10 @@
 package com.yj.professional.activity;
 
+import java.util.Date;
+
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.yj.professional.activity.R;
+import com.yj.professional.domain.DetectionRecord;
 import com.yj.professional.popupwindow.PopWindowSelectCondition;
 import com.yj.professional.view.DisplayResultView;
 
@@ -15,6 +18,10 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
+/**
+ * @author liaoyao
+ * 主页面活动
+ */
 public class MainActivity extends Activity implements OnClickListener{
 	
 	private SlidingMenu slidingMenu;
@@ -61,12 +68,23 @@ public class MainActivity extends Activity implements OnClickListener{
 		imgbtn_add_choice_type = (ImageButton)findViewById(R.id.imgbtn_add_choice_type);
 		
 		ll_add_display = (LinearLayout)findViewById(R.id.ll_add_display);
-		DisplayResultView view = new DisplayResultView(this, screenWidth, null);
+		DetectionRecord record = new DetectionRecord("无", "质控试剂", new Date());
+		DisplayResultView view = new DisplayResultView(this, screenWidth, record);
 		ll_add_display.addView(view);
+		DetectionRecord record1 = new DetectionRecord("患者1", "全血", new Date());
 		DisplayResultView view1 = new DisplayResultView(this, screenWidth, null);
+		view1.ll_display_result_view.setBackground(getResources().getDrawable(R.drawable.result_two2));
 		ll_add_display.addView(view1);
 		DisplayResultView view2 = new DisplayResultView(this, screenWidth, null);
 		ll_add_display.addView(view2);
+		//设置点击事件
+		view.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(MainActivity.this,ResultDetailActivity.class);
+				startActivity(intent);
+			}
+		});
 	}
 
 	@Override

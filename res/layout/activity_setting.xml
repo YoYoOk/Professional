@@ -34,15 +34,17 @@
 	            android:layout_width="wrap_content"
 	            android:layout_height="50dp"
 	            android:gravity="center"
-	            android:text="凝血检测"
-	            android:textSize="24sp"/>
+	            android:text="用户设置"
+	            android:textSize="24sp"
+	            android:textColor="#FFF"/>
 	        </LinearLayout>
 	        <ImageButton android:id="@+id/imgbtn_add_choice_type"
 	            android:layout_width="20dp"
 	            android:layout_height="20dp"
 	            android:background="@drawable/add"
 	            android:layout_marginRight="10dp"
-	            android:layout_gravity="right|center_vertical"/>
+	            android:layout_gravity="right|center_vertical"
+	            android:visibility="invisible"/>
 	     </LinearLayout>
 	     <ImageView 
 	         android:id="@+id/imgview_popupwindow"
@@ -52,5 +54,206 @@
 	         android:background="@drawable/popupwindow_select_conditon_bg"/>
     </LinearLayout>
     
-
+	<LinearLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="0dp"
+	    android:layout_weight="0.4"
+	    android:orientation="vertical">
+	    <LinearLayout 
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal"
+	        android:layout_marginTop="10dp"
+	        android:gravity="center_vertical">
+	        <TextView 
+	            android:layout_width="0dp"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="0.35"
+	            android:padding="5dp"
+	            android:gravity="right|center_vertical"
+	            android:text="用户名："
+	            android:textSize="18sp"
+	            android:textColor="#A1A1A1"/>
+	        <TextView 
+	            android:layout_width="0dp"
+	            android:layout_height="wrap_content"
+	            android:padding="5dp"
+	            android:layout_weight="0.65"
+	            android:gravity="left|center_vertical"
+	            android:text="呵呵哒"
+	            android:textSize="18sp"
+	            android:textColor="#A1A1A1"/>
+	    </LinearLayout>
+	    <LinearLayout 
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal"
+	        android:layout_marginTop="10dp"
+	        android:gravity="center_vertical">
+	        <TextView 
+	            android:layout_width="0dp"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="0.35"
+	            android:padding="5dp"
+	            android:gravity="right|center_vertical"
+	            android:text="密 码："
+	            android:textSize="18sp"
+	            android:textColor="#A1A1A1"/>
+	        <TextView 
+	            android:layout_width="0dp"
+	            android:layout_height="wrap_content"
+	            android:padding="5dp"
+	            android:layout_weight="0.65"
+	            android:gravity="left|center_vertical"
+	            android:text="**********"
+	            android:textSize="18sp"
+	            android:textColor="#A1A1A1"/>
+	    </LinearLayout>
+	    <Button
+	        android:id="@+id/btn_open_update_password_view"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="10dp"
+	        android:paddingLeft="30dp"
+	        android:paddingRight="30dp"
+	        android:layout_marginBottom="10dp"
+	        android:layout_marginRight="10dp"
+	        android:paddingTop="5dp"
+	        android:paddingBottom="5dp"
+	        android:text="修改密码"
+	        android:textColor="#FFFFFF"
+	        android:background="@drawable/bg"
+	        android:layout_gravity="right"/>
+	</LinearLayout>
+    <!-- 分割线 -->
+	<View  
+       android:layout_height="3px" 
+       android:layout_width="match_parent"
+       android:layout_marginTop="5dp"
+       android:layout_marginBottom="5dp"
+       android:background="#68A8F2"/>
+		
+	<LinearLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="0dp"
+	    android:layout_weight="0.6"
+	    android:orientation="vertical">
+	    
+	    <LinearLayout
+	        android:id="@+id/ll_update_password_view" 
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical"
+	        android:layout_margin="10dp"
+	        android:background="@drawable/popupwindow_select_conditon_bg"
+	        android:visibility="invisible">
+	        <LinearLayout 
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:orientation="horizontal"
+		        android:layout_marginTop="10dp"
+		        android:layout_marginBottom="10dp"
+		        android:paddingRight="5dp"
+		        android:gravity="center_vertical">
+		        <TextView 
+		            android:layout_width="0dp"
+		            android:layout_height="wrap_content"
+		            android:layout_weight="0.35"
+		            android:padding="5dp"
+		            android:gravity="right|center_vertical"
+		            android:text="新 密 码："
+		            android:textSize="18sp"
+		            android:textColor="#A1A1A1"/>
+		        <EditText 
+		            android:layout_width="0dp"
+		            android:layout_height="wrap_content"
+		            android:padding="5dp"
+		            android:layout_weight="0.65"
+		            android:gravity="left|center_vertical"
+		            android:password="true"
+		            android:textSize="18sp"
+		            android:textColor="#A1A1A1"
+		            android:background="@drawable/popupwindow_btn_bg"/>
+		    </LinearLayout>
+	        <LinearLayout 
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:orientation="horizontal"
+		        android:layout_marginBottom="10dp"
+		        android:paddingRight="5dp"
+		        android:gravity="center_vertical">
+		        <TextView 
+		            android:layout_width="0dp"
+		            android:layout_height="wrap_content"
+		            android:layout_weight="0.35"
+		            android:padding="5dp"
+		            android:gravity="right|center_vertical"
+		            android:text="新 密 码："
+		            android:textSize="18sp"
+		            android:textColor="#A1A1A1"/>
+		        <EditText 
+		            android:layout_width="0dp"
+		            android:layout_height="wrap_content"
+		            android:padding="5dp"
+		            android:layout_weight="0.65"
+		            android:gravity="left|center_vertical"
+		            android:password="true"
+		            android:textSize="18sp"
+		            android:textColor="#A1A1A1"
+		            android:background="@drawable/popupwindow_btn_bg"/>
+		    </LinearLayout>
+		    <LinearLayout 
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:orientation="horizontal"
+		        android:layout_marginBottom="10dp"
+		        android:gravity="center_horizontal">
+		        <Button 
+		            android:id="@+id/btn_confirm_update_password"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:text="确认修改"
+			        android:textColor="#86B6F1"
+			        android:gravity="center"
+			        android:paddingLeft="15dp"
+			        android:paddingRight="15dp"
+			        android:paddingTop="8dp"
+			        android:paddingBottom="8dp"
+			        android:layout_marginTop="5dp"
+			        android:layout_marginBottom="5dp"
+			        android:background="@drawable/popupwindow_btn_bg"/>
+		        <Button 
+		            android:id="@+id/btn_cancel_update_password"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:text="取消"
+			        android:textColor="#86B6F1"
+			        android:gravity="center"
+			        android:layout_marginLeft="5dp"
+			        android:paddingLeft="15dp"
+			        android:paddingRight="15dp"
+			        android:paddingTop="8dp"
+			        android:paddingBottom="8dp"
+			        android:layout_marginTop="5dp"
+			        android:layout_marginBottom="5dp"
+			        android:background="@drawable/popupwindow_btn_bg"/>
+		    </LinearLayout>
+		    
+	    </LinearLayout>
+	    
+	</LinearLayout>
+	<Button
+        android:id="@+id/btn_instruction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:layout_marginBottom="10dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:text="使用说明"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/bg"
+        android:layout_gravity="center_horizontal"/>
 </LinearLayout>

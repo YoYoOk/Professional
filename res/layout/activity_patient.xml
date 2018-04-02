@@ -35,7 +35,8 @@
 	            android:layout_height="50dp"
 	            android:gravity="center"
 	            android:text="患者管理"
-	            android:textSize="24sp"/>
+	            android:textSize="24sp"
+	            android:textColor="#FFF"/>
 	        </LinearLayout>
 	        <ImageButton android:id="@+id/imgbtn_add_choice_type"
 	            android:layout_width="20dp"

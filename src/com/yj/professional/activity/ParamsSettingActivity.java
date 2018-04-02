@@ -6,7 +6,13 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+/**
+ * @author liaoyao
+ * 参数设置页面活动
+ */
 public class ParamsSettingActivity extends Activity implements OnClickListener{
+	
+	
 	
 	private Button btn_confirm_set, btn_cancel_set;
 	
@@ -14,6 +20,7 @@ public class ParamsSettingActivity extends Activity implements OnClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_params_setting);
+		getActionBar().hide();//隐藏actionbar
 		btn_confirm_set = (Button)findViewById(R.id.btn_confirm_set);
 		btn_cancel_set = (Button)findViewById(R.id.btn_cancel_set);
 		btn_confirm_set.setOnClickListener(this);

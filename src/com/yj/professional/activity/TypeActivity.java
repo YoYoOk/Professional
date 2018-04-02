@@ -10,14 +10,20 @@ import com.yj.professional.view.SideslipListView;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class TypeActivity extends Activity {
-	
+/**
+ * @author liaoyao
+ * 检测样本类型管理活动
+ */
+public class TypeActivity extends Activity implements OnClickListener{
+	private ImageButton btn_return;
 	private SideslipListView lv_type_list;
 	private List<String> typeList;
 	@Override
@@ -25,6 +31,8 @@ public class TypeActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_type);
 		getActionBar().hide();//隐藏actionbar
+		btn_return = (ImageButton)findViewById(R.id.imgbtn_left_arrow);
+		btn_return.setOnClickListener(this);
 		typeList = new ArrayList<>();
 		typeList.add("质控试剂");
 		typeList.add("全血");
@@ -44,6 +52,18 @@ public class TypeActivity extends Activity {
                 }
             }
         });
+	}
+	
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.imgbtn_left_arrow:
+			this.finish();
+			break;
+
+		default:
+			break;
+		}
 	}
 	
 	/**
@@ -97,5 +117,5 @@ public class TypeActivity extends Activity {
         public TextView textView;
         public TextView txtv_delete;
     }
-	
+
 }

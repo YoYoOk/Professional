@@ -16,6 +16,10 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * @author liaoyao
+ * 患者管理页面活动
+ */
 public class PatientActivity extends Activity implements OnClickListener{
 	
 	private ImageButton btn_return;

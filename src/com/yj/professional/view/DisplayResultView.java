@@ -13,7 +13,7 @@ import android.widget.TextView;
 public class DisplayResultView extends LinearLayout {
 	
 	private TextView tv_patient_name, tv_detection_type, tv_detection_date;
-	private LinearLayout ll_display_result_view;
+	public LinearLayout ll_display_result_view;
 	
 	public DisplayResultView(Context context) {
 		super(context);

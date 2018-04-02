@@ -22,6 +22,10 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+/**
+ * @author liaoyao
+ * 新建检测页面活动
+ */
 public class DetectionActivity extends Activity implements OnClickListener{
 	private Button btn_start_detection;
 	private ImageButton btn_return, btn_bluetooth;
@@ -111,6 +115,7 @@ public class DetectionActivity extends Activity implements OnClickListener{
 			record.setDetectionDate(new Date());
 			DisplayResultView display = new DisplayResultView(this, screenWidth, record);
 			ll_result_display.removeAllViews();
+			display.ll_display_result_view.setBackground(getResources().getDrawable(R.drawable.result_one));
 			ll_result_display.addView(display);
 			break;
 		default:

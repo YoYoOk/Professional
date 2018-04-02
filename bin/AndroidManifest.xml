@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,6 +22,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".RegisterActivity"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" ></activity>
+        <activity android:name=".MainActivity"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" ></activity>
         <activity android:name=".DetectionActivity"
             android:windowSoftInputMode="stateHidden|stateUnchanged" ></activity>
         <activity android:name=".AnalyzeActivity"
@@ -33,6 +37,8 @@
         <activity android:name=".SettingActivity"
             android:windowSoftInputMode="stateHidden|stateUnchanged" ></activity>
         <activity android:name=".ParamsSettingActivity"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" ></activity>
+        <activity android:name=".ResultDetailActivity"
             android:windowSoftInputMode="stateHidden|stateUnchanged" ></activity>
     </application>
 
