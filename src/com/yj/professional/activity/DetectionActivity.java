@@ -88,13 +88,15 @@ public class DetectionActivity extends Activity implements OnClickListener{
 	}
 	private void initParams() {
 		patientList = new ArrayList<>();
-		patientList.add("hehe");
-		patientList.add("xixi");
-		patientList.add("heihei");
-		patientList.add("haha");
+		patientList.add("amity");
+		patientList.add("jack");
+		patientList.add("lucy");
+		patientList.add("frunk");
 		typeList = new ArrayList<>();
+		typeList.add("质控试剂");
+		typeList.add("全血");
 		typeList.add("K高岭土激活");
-		typeList.add("KH");
+		typeList.add("KH高岭土激活和肝素酶中和的枸橼酸化样品");
 		typeList.add("CK");
 		typeList.add("CKH");
 	}

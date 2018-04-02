@@ -32,10 +32,11 @@ public class PatientActivity extends Activity implements OnClickListener{
 		getActionBar().hide();//隐藏actionbar
 		initWidget();
 		patientList = new ArrayList<>();
-		patientList.add("zhangsan");
-		patientList.add("lisi");
-		patientList.add("wangwu");
-		patientList.add("heihei");
+		patientList.add("amity");
+		patientList.add("lucy");
+		patientList.add("jack");
+		patientList.add("frank");
+		patientList.add("leo");
 		lv_patient_list = (SideslipListView)findViewById(R.id.lv_patient_list);
 		lv_patient_list.setAdapter(new PatientNameAdapter());//设置适配器
 		//设置item点击事件
