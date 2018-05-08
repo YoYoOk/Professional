@@ -10,227 +10,277 @@
         android:layout_height="50dp"
         android:layout_margin="0dp"
         android:background="@drawable/actionbar_bg"
-        android:orientation="vertical"
-        android:clipChildren="false">
+        android:clipChildren="false"
+        android:orientation="vertical" >
+
         <LinearLayout
-	        android:layout_width="match_parent"
-	        android:layout_height="50dp"
-	        android:layout_margin="0dp"
-	        android:background="@drawable/actionbar_bg"
-	        android:orientation="horizontal">
-	        <ImageButton
-	            android:id="@+id/imgbtn_left_arrow" 
-	            android:layout_width="20dp"
-	            android:layout_height="20dp"
-	            android:layout_margin="10dp"
-	            android:layout_gravity="left|center_vertical"
-	            android:background="@drawable/left_arrow"/>
-	        <LinearLayout 
-	            android:layout_width="0dp"
-	            android:layout_height="50dp"
-	            android:layout_weight="1"
-	            android:gravity="center">
-	            <TextView 
-	            android:layout_width="wrap_content"
-	            android:layout_height="50dp"
-	            android:gravity="center"
-	            android:text="患者管理"
-	            android:textSize="24sp"
-	            android:textColor="#FFF"/>
-	        </LinearLayout>
-	        <ImageButton android:id="@+id/imgbtn_add_choice_type"
-	            android:layout_width="20dp"
-	            android:layout_height="20dp"
-	            android:background="@drawable/add"
-	            android:layout_marginRight="10dp"
-	            android:layout_gravity="right|center_vertical"
-	            android:visibility="invisible"/>
-	     </LinearLayout>
-	    <!--  <ImageView 
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="0dp"
+            android:background="@drawable/actionbar_bg"
+            android:orientation="horizontal" >
+
+            <ImageButton
+                android:id="@+id/imgbtn_left_arrow"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="left|center_vertical"
+                android:layout_margin="10dp"
+                android:background="@drawable/left_arrow" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:gravity="center" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:gravity="center"
+                    android:text="患者管理"
+                    android:textColor="#FFF"
+                    android:textSize="24sp" />
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/imgbtn_add_choice_type"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/add"
+                android:visibility="invisible" />
+        </LinearLayout>
+        <!--
+              <ImageView 
 	         android:id="@+id/imgview_popupwindow"
 	         android:layout_width="wrap_content"
 	         android:layout_height="match_parent"
 	         android:layout_gravity="right"
-	         android:background="@drawable/popupwindow_select_conditon_bg"/> -->
+	         android:background="@drawable/popupwindow_select_conditon_bg"/>
+        -->
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="0.25"
+            android:gravity="center_vertical"
+            android:text="患者ID：" />
+
+        <EditText
+            android:id="@+id/et_patientId"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp"
+            android:layout_weight="0.75"
+            android:background="@drawable/bg"
+            android:gravity="left"
+            android:minHeight="30dp"
+            android:padding="5dp"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="0.25"
+            android:gravity="center_vertical"
+            android:text="姓  名：" />
+
+        <EditText
+            android:id="@+id/et_patientName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp"
+            android:layout_weight="0.75"
+            android:background="@drawable/bg"
+            android:gravity="left"
+            android:minHeight="30dp"
+            android:padding="5dp"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="0.25"
+            android:gravity="center_vertical"
+            android:text="体  重：" />
+
+        <EditText
+            android:id="@+id/et_patientWeight"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp"
+            android:layout_weight="0.75"
+            android:background="@drawable/bg"
+            android:gravity="left"
+            android:hint="kg"
+            android:minHeight="30dp"
+            android:padding="5dp"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="0.25"
+            android:gravity="center_vertical"
+            android:text="性  别：" />
+
+        <RadioGroup
+            android:id="@+id/rgStorageWay"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.75"
+            android:gravity="left"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/rbtn_unit_male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="男" />
+
+            <RadioButton
+                android:id="@+id/rbtn_unit_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="女" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="0.25"
+            android:gravity="center_vertical"
+            android:text="年  龄：" />
+
+        <EditText
+            android:id="@+id/et_patientAge"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp"
+            android:layout_weight="0.75"
+            android:background="@drawable/bg"
+            android:gravity="left"
+            android:minHeight="30dp"
+            android:padding="5dp"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:orientation="horizontal" >
+        
+        <Button
+            android:id="@+id/btn_add_patient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/bg"
+            android:paddingBottom="5dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="5dp"
+            android:text="添加" />
+        
+        <Button
+            android:id="@+id/btn_delete_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/bg"
+            android:paddingBottom="5dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="5dp"
+            android:text="清空" />
+</LinearLayout>
+
     
-    <LinearLayout 
-         android:layout_width="match_parent"
-         android:layout_height="40dp"
-         android:layout_marginTop="5dp"
-         android:layout_marginLeft="10dp"
-         android:layout_marginRight="10dp"
-         android:orientation="horizontal"
-         android:gravity="center_vertical">
-         <TextView 
-             android:layout_width="0dp"
-             android:layout_height="40dp"
-             android:layout_weight="0.25"
-             android:text="患者ID："
-             android:layout_marginLeft="10dp"
-             android:gravity="center_vertical"/>
-         <EditText 
-             android:layout_width="0dp"
-             android:layout_height="wrap_content"
-             android:layout_weight="0.75"
-             android:layout_margin="6dp"
-             android:padding="5dp"
-             android:minHeight="30dp"
-             android:gravity="left"
-             android:textSize="18sp"
-             android:background="@drawable/bg"/>
-    </LinearLayout>
-    
-    <LinearLayout 
-         android:layout_width="match_parent"
-         android:layout_height="40dp"
-         android:layout_marginTop="5dp"
-         android:layout_marginLeft="10dp"
-         android:layout_marginRight="10dp"
-         android:orientation="horizontal"
-         android:gravity="center_vertical">
-         <TextView 
-             android:layout_width="0dp"
-             android:layout_height="40dp"
-             android:layout_weight="0.25"
-             android:text="姓  名："
-             android:layout_marginLeft="10dp"
-             android:gravity="center_vertical"/>
-         <EditText 
-             android:layout_width="0dp"
-             android:layout_height="wrap_content"
-             android:layout_weight="0.75"
-             android:layout_margin="6dp"
-             android:padding="5dp"
-             android:minHeight="30dp"
-             android:gravity="left"
-             android:textSize="18sp"
-             android:background="@drawable/bg"/>
-    </LinearLayout>
-    
-    <LinearLayout 
-         android:layout_width="match_parent"
-         android:layout_height="40dp"
-         android:layout_marginTop="5dp"
-         android:layout_marginLeft="10dp"
-         android:layout_marginRight="10dp"
-         android:orientation="horizontal"
-         android:gravity="center_vertical">
-         <TextView 
-             android:layout_width="0dp"
-             android:layout_height="40dp"
-             android:layout_weight="0.25"
-             android:text="体  重："
-             android:layout_marginLeft="10dp"
-             android:gravity="center_vertical"/>
-         <EditText 
-             android:layout_width="0dp"
-             android:layout_height="wrap_content"
-             android:layout_weight="0.75"
-             android:layout_margin="6dp"
-             android:padding="5dp"
-             android:minHeight="30dp"
-             android:hint="kg"
-             android:gravity="left"
-             android:textSize="18sp"
-             android:background="@drawable/bg"/>
-    </LinearLayout>
-    <LinearLayout 
-         android:layout_width="match_parent"
-         android:layout_height="40dp"
-         android:layout_marginTop="5dp"
-         android:layout_marginLeft="10dp"
-         android:layout_marginRight="10dp"
-         android:orientation="horizontal"
-         android:gravity="center_vertical">
-         <TextView 
-             android:layout_width="0dp"
-             android:layout_height="40dp"
-             android:layout_weight="0.25"
-             android:text="性  别："
-             android:layout_marginLeft="10dp"
-             android:gravity="center_vertical"/>
-         <RadioGroup
-	        android:id="@+id/rgStorageWay"
-	        android:layout_width="0dp"
-	        android:layout_height="wrap_content"
-	        android:layout_weight="0.75"
-	        android:orientation="horizontal"
-	        android:gravity="left">
-	 
-	 		<RadioButton
-	            android:id="@+id/btn_unit_li"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            
-	            android:text="男"
-	            android:checked="true"/>
-	
-	        <RadioButton
-	            android:id="@+id/btn_unit_dai"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:text="女"/>
-	    </RadioGroup>
-         
-         
-    </LinearLayout>
-    <LinearLayout 
-         android:layout_width="match_parent"
-         android:layout_height="40dp"
-         android:layout_marginTop="5dp"
-         android:layout_marginBottom="5dp"
-         android:layout_marginLeft="10dp"
-         android:layout_marginRight="10dp"
-         android:orientation="horizontal"
-         android:gravity="center_vertical">
-         <TextView 
-             android:layout_width="0dp"
-             android:layout_height="40dp"
-             android:layout_weight="0.25"
-             android:text="年  龄："
-             android:layout_marginLeft="10dp"
-             android:gravity="center_vertical"/>
-         <EditText 
-             android:layout_width="0dp"
-             android:layout_height="wrap_content"
-             android:layout_weight="0.75"
-             android:layout_margin="6dp"
-             android:padding="5dp"
-             android:minHeight="30dp"
-             android:gravity="left"
-             android:textSize="18sp"
-             android:background="@drawable/bg"/>
-    </LinearLayout>
-    
-    <Button
-        android:id="@+id/btn_add_patient"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:text="添加"
-        android:background="@drawable/bg"
-        android:layout_gravity="center_horizontal"/>
-    
-    <View  android:layout_height="3px" 
-           android:layout_width="match_parent"
-           android:layout_marginTop="5dp"
-           android:layout_marginBottom="5dp"
-           android:background="#68A8F2"/>
-	
-    <LinearLayout 
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3px"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:background="#68A8F2" />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
-         <com.yj.professional.view.SideslipListView 
-             android:id="@+id/lv_patient_list"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
-             
-         </com.yj.professional.view.SideslipListView>
+        android:layout_weight="1" >
+
+        <com.yj.professional.view.SideslipListView
+            android:id="@+id/lv_patient_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:listSelector="#00000000" >
+        </com.yj.professional.view.SideslipListView>
     </LinearLayout>
-    
+
 </LinearLayout>

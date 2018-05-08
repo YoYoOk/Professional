@@ -8,7 +8,7 @@
     android:background="@drawable/popupwindow_select_conditon_bg">
     
     <Button 
-        android:id="@+id/btn_test"
+        android:id="@+id/btn_popup_select_patient"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="选择患者"
@@ -21,9 +21,10 @@
         android:layout_marginTop="5dp"
         android:background="@drawable/popupwindow_btn_bg"/>
 	<Button 
+	    android:id="@+id/btn_popup_select_sample"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="选择类型"
+        android:text="选择样本"
         android:textColor="#86B6F1"
         android:gravity="center"
         android:paddingLeft="15dp"
@@ -33,6 +34,7 @@
         android:layout_marginTop="5dp"
         android:background="@drawable/popupwindow_btn_bg"/>
 	<Button 
+	    android:id="@+id/btn_popup_select_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="选择日期"

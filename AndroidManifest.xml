@@ -7,7 +7,13 @@
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="23" />
-
+	<uses-feature 
+        android:name="android.hardware.bluetooth_le"
+        android:required="true"/>
+    <uses-permission android:name="android.permission.BLUETOOTH" /><!-- 获取蓝牙4.0操作的权限 -->
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /><!-- 获取sd卡读写的权限 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -32,7 +38,7 @@
             android:windowSoftInputMode="stateHidden|stateUnchanged" ></activity>
         <activity android:name=".PatientActivity"
             android:windowSoftInputMode="stateHidden|stateUnchanged" ></activity>
-        <activity android:name=".TypeActivity"
+        <activity android:name=".SampleActivity"
             android:windowSoftInputMode="stateHidden|stateUnchanged" ></activity>
         <activity android:name=".SettingActivity"
             android:windowSoftInputMode="stateHidden|stateUnchanged" ></activity>
@@ -40,6 +46,7 @@
             android:windowSoftInputMode="stateHidden|stateUnchanged" ></activity>
         <activity android:name=".ResultDetailActivity"
             android:windowSoftInputMode="stateHidden|stateUnchanged" ></activity>
+        <service android:name="com.yj.professional.bluetooth.BluetoothLeService" android:enabled="true"></service>
     </application>
 
 </manifest>

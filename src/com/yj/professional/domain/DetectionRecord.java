@@ -2,13 +2,17 @@ package com.yj.professional.domain;
 
 import java.util.Date;
 
+/**
+ * @author liaoyao
+ * 检测记录 表字段信息
+ */
 public class DetectionRecord {
 	private Integer detectionId;
 	private String patientName;
 	private String detectionType;
 	private String detectionDescri;
 	private String detectionValue;
-	private Date detectionDate;
+	private Date detectionDate;//检测时间为csv文件的文件名 存储检测的数据
 	
 	public DetectionRecord() {
 		

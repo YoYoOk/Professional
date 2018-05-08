@@ -361,7 +361,7 @@
 	        android:text="@string/times_init"/>
 	</LinearLayout> -->
 	<CheckBox
-        android:id="@+id/cb_checkbox"
+        android:id="@+id/cb_save_param"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"

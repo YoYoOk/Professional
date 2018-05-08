@@ -23,6 +23,6 @@
     <string name="confirm_set">确 定</string>
     <string name="cancel_set">取 消</string>
 	<string name="test_times_tv">测试次数:</string>
-    
-    
+    <!-- 蓝牙相关 -->
+    <string name="unknown_device">unknown_device</string>
 </resources>

@@ -10,6 +10,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.PopupWindow;
@@ -19,14 +20,14 @@ import android.widget.Toast;
  * @author liaoyao
  * 自定义popupwindow窗口  右上角弹出选择查看条件
  */
-public class PopWindowSelectBluetooth extends PopupWindow implements OnClickListener{
+public class PopWindowSelectBluetooth extends PopupWindow{
 	private Activity context;
 	private View contentView;  
-	private Button btn_test;
-	private Button btn_params_setting;
-	
-    public PopWindowSelectBluetooth(final Activity context, int w, int h){  
+	private Button btn_connect_bt, btn_disconnect_bt, btn_search_bt, btn_params_setting;
+	private OnClickListener mClickListener; 
+    public PopWindowSelectBluetooth(final Activity context, int w, int h, OnClickListener mClickListener){  
     	this.context = context;
+    	this.mClickListener = mClickListener;
         LayoutInflater inflater = (LayoutInflater) context  
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);  
         contentView = inflater.inflate(R.layout.popup_window_select_bluetooth, null);  
@@ -48,16 +49,15 @@ public class PopWindowSelectBluetooth extends PopupWindow implements OnClickList
         // mPopupWindow.setAnimationStyle(android.R.style.Animation_Dialog);  
         // 设置SelectPicPopupWindow弹出窗体动画效果  
         this.setAnimationStyle(R.style.AnimationPreview);  
-        btn_test = (Button)contentView.findViewById(R.id.btn_connect_bt);
+        btn_connect_bt = (Button)contentView.findViewById(R.id.btn_connect_bt);
+        btn_disconnect_bt = (Button)contentView.findViewById(R.id.btn_disconnect_bt);
+        btn_search_bt = (Button)contentView.findViewById(R.id.btn_search_bt);
         btn_params_setting = (Button)contentView.findViewById(R.id.btn_params_setting);
-        btn_params_setting.setOnClickListener(this);
-        btn_test.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Toast.makeText(context, "ehheh", Toast.LENGTH_SHORT).show();
-				PopWindowSelectBluetooth.this.dismiss();  
-			}
-		});
+        btn_params_setting.setOnClickListener(mClickListener);
+        btn_connect_bt.setOnClickListener(mClickListener);
+        btn_disconnect_bt.setOnClickListener(mClickListener);
+        btn_search_bt.setOnClickListener(mClickListener);
+        btn_params_setting.setOnClickListener(mClickListener);
     }  
       
     /** 
@@ -74,17 +74,17 @@ public class PopWindowSelectBluetooth extends PopupWindow implements OnClickList
         }  
     }
 
-	@Override
-	public void onClick(View v) {
-		switch (v.getId()) {
-		case R.id.btn_params_setting:
-			Intent intent = new Intent(context, ParamsSettingActivity.class);
-			context.startActivity(intent);
-			this.dismiss();
-			break;
-
-		default:
-			break;
-		}
-	}  
+//	@Override
+//	public void onClick(View v) {
+//		switch (v.getId()) {
+//		case R.id.btn_params_setting:
+//			Intent intent = new Intent(context, ParamsSettingActivity.class);
+//			context.startActivity(intent);
+//			this.dismiss();
+//			break;
+//
+//		default:
+//			break;
+//		}
+//	}  
 }  

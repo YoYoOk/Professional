@@ -130,6 +130,7 @@
 		                 android:gravity="center_vertical"/>
 		             
 		             <EditText 
+		                 android:id="@+id/et_detect_descri"
 		                 android:layout_width="0dp"
 		                 android:layout_height="wrap_content"
 		                 android:layout_weight="1"
@@ -142,18 +143,40 @@
 		             
 		         </LinearLayout>
 	             
-	             <Button 
-	                 android:id="@+id/btn_start_detection"
+	             <LinearLayout 
 	                 android:layout_width="wrap_content"
 	                 android:layout_height="wrap_content"
-	                 android:paddingTop="8dp"
-	                 android:paddingBottom="8dp"
-	                 android:paddingLeft="24dp"
-	                 android:paddingRight="24dp"
-	                 android:layout_gravity="center_horizontal"
-	                 android:text="开始"
-	                 android:textSize="20sp"
-	                 android:background="@drawable/bg"/>
+	                 android:orientation="horizontal"
+	                 android:layout_gravity="center_horizontal">
+	                 <Button 
+		                 android:id="@+id/btn_start_detection"
+		                 android:layout_width="wrap_content"
+		                 android:layout_height="wrap_content"
+		                 android:paddingTop="8dp"
+		                 android:paddingBottom="8dp"
+		                 android:paddingLeft="24dp"
+		                 android:paddingRight="24dp"
+		                 android:layout_gravity="center_horizontal"
+		                 android:layout_marginRight="5dp"
+		                 android:text="开始"
+		                 android:textSize="20sp"
+		                 android:background="@drawable/bg"/>
+	                 <Button 
+		                 android:id="@+id/btn_stop_detection"
+		                 android:layout_width="wrap_content"
+		                 android:layout_height="wrap_content"
+		                 android:paddingTop="8dp"
+		                 android:paddingBottom="8dp"
+		                 android:paddingLeft="24dp"
+		                 android:paddingRight="24dp"
+		                 android:layout_gravity="center_horizontal"
+		                 android:layout_marginLeft="5dp"
+		                 android:text="停止"
+		                 android:textSize="20sp"
+		                 android:background="@drawable/bg"/>
+	             </LinearLayout>
+	             
+	             
 	             <!-- 结果曲线显示 -->
 		         <LinearLayout 
 	                android:id="@+id/ll_result_display"
@@ -277,7 +300,7 @@
 					        android:layout_width="0dp"
 					        android:layout_height="match_parent"
 					        android:layout_weight="0.25"
-					        android:text="*"
+					        android:text="4.33"
 					        android:textSize="18sp"
 					        android:textColor="#F7B600"
 					        android:gravity="center"/>
@@ -286,7 +309,7 @@
 					        android:layout_width="0dp"
 					        android:layout_height="match_parent"
 					        android:layout_weight="0.25"
-					        android:text="N/A"
+					        android:text="2.1"
 					        android:textSize="18sp"
 					        android:textColor="#55FFA6"
 					        android:gravity="center"/>

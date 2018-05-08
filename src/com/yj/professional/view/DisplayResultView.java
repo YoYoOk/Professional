@@ -11,9 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class DisplayResultView extends LinearLayout {
-	
 	private TextView tv_patient_name, tv_detection_type, tv_detection_date;
-	public LinearLayout ll_display_result_view;
+	private LinearLayout ll_display_result_view;
 	
 	public DisplayResultView(Context context) {
 		super(context);
@@ -42,4 +41,21 @@ public class DisplayResultView extends LinearLayout {
 			}
 		}
 	}
+	
+	public LinearLayout getLl_display_result_view() {
+		return ll_display_result_view;
+	}
+
+	public TextView getTv_patient_name() {
+		return tv_patient_name;
+	}
+
+	public TextView getTv_detection_type() {
+		return tv_detection_type;
+	}
+
+	public TextView getTv_detection_date() {
+		return tv_detection_date;
+	}
+
 }

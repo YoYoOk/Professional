@@ -133,21 +133,23 @@ public class SideslipListView extends ListView {
         }
         //获取当前的item
         mPointChild = (ViewGroup) getChildAt(pointToPosition(mDownX, mDownY) - getFirstVisiblePosition());
-
-        mDeleteWidth = mPointChild.getChildAt(1).getLayoutParams().width;//获取删除组件的宽度
-        Log.i(TAG, "**********pointToPosition(x,y): " + pointToPosition(mDownX, mDownY)
-                + ", getFirstVisiblePosition() = " + getFirstVisiblePosition()
-                + ", mDeleteWidth = " + mDeleteWidth);
-        mItemLayoutParams = (LinearLayout.LayoutParams) mPointChild.getChildAt(0).getLayoutParams();
-
-        mItemLayoutParams.width = mScreenWidth;
-        mPointChild.getChildAt(0).setLayoutParams(mItemLayoutParams);
+        if(mPointChild != null){
+	        mDeleteWidth = mPointChild.getChildAt(1).getLayoutParams().width;//获取删除组件的宽度
+	        Log.i(TAG, "**********pointToPosition(x,y): " + pointToPosition(mDownX, mDownY)
+	                + ", getFirstVisiblePosition() = " + getFirstVisiblePosition()
+	                + ", mDeleteWidth = " + mDeleteWidth);
+	        mItemLayoutParams = (LinearLayout.LayoutParams) mPointChild.getChildAt(0).getLayoutParams();
+	
+	        mItemLayoutParams.width = mScreenWidth;
+	        mPointChild.getChildAt(0).setLayoutParams(mItemLayoutParams);
+        }
     }
 
     private boolean performActionMove(MotionEvent ev) {
         int nowX = (int) ev.getX();
         int nowY = (int) ev.getY();
         int diffX = nowX - mDownX;
+        if(mPointChild != null){
         if (Math.abs(diffX) > Math.abs(nowY - mDownY) && Math.abs(nowY - mDownY) < 20) {
             if (!isDeleteShow && nowX < mDownX) {//删除按钮未显示时向左滑
                 if (-diffX >= mDeleteWidth) {//如果滑动距离大于删除组件的宽度时进行偏移的最大处理
@@ -165,6 +167,7 @@ public class SideslipListView extends ListView {
                 isAllowItemClick = false;
             }
             return true;
+        }
         }
         return super.onTouchEvent(ev);
     }

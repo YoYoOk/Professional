@@ -1,5 +1,9 @@
 package com.yj.professional.activity;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+import com.yj.professional.domain.DetectionRecord;
 import com.yj.professional.view.DisplayResultView;
 
 import android.app.Activity;
@@ -14,7 +18,7 @@ import android.widget.LinearLayout;
 
 /**
  * @author liaoyao
- * 登录页面活动
+ * 结果详情页面活动
  */
 public class ResultDetailActivity extends Activity implements OnClickListener{
 	
@@ -32,8 +36,16 @@ public class ResultDetailActivity extends Activity implements OnClickListener{
 		screenWidth = outMetrics.widthPixels;
 		btn_return = (ImageButton)findViewById(R.id.imgbtn_left_arrow);
 		ll_result_display = (LinearLayout)findViewById(R.id.ll_result_display);
-		DisplayResultView view = new DisplayResultView(this, screenWidth, null);
-		view.ll_display_result_view.setBackground(getResources().getDrawable(R.drawable.result_two_param));
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		DetectionRecord record = null;
+		try {
+			record = new DetectionRecord("无", "质控试剂", format.parse("2018-01-11 09:36:47"));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		DisplayResultView view = new DisplayResultView(this, screenWidth, record);
+		view.getLl_display_result_view().setBackground(getResources().getDrawable(R.drawable.result_two_param));
 		ll_result_display.addView(view);
 		btn_return.setOnClickListener(this);
 	}

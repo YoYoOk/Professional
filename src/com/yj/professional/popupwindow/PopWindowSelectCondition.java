@@ -7,25 +7,23 @@ import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.PopupWindow;
-import android.widget.Toast;
 
 /**
  * @author liaoyao
  * 自定义popupwindow窗口  右上角弹出选择查看条件
  */
 public class PopWindowSelectCondition extends PopupWindow {
-	private View conentView;  
-	private Button btn_test;
-    public PopWindowSelectCondition(final Activity context, int w, int h){  
+	private View contentView;  
+	private Button btn_select_patient, btn_select_sample, btn_select_date;
+    public PopWindowSelectCondition(final Activity context, int w, int h, View.OnClickListener mClickListener){  
         LayoutInflater inflater = (LayoutInflater) context  
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);  
-        conentView = inflater.inflate(R.layout.popup_window_select_condition, null);  
+        contentView = inflater.inflate(R.layout.popup_window_select_condition, null);  
         // 设置SelectPicPopupWindow的View  
-        this.setContentView(conentView);  
+        this.setContentView(contentView);  
         // 设置SelectPicPopupWindow弹出窗体的宽  
         this.setWidth(w / 2 + 40);  
         // 设置SelectPicPopupWindow弹出窗体的高  
@@ -42,14 +40,12 @@ public class PopWindowSelectCondition extends PopupWindow {
         // mPopupWindow.setAnimationStyle(android.R.style.Animation_Dialog);  
         // 设置SelectPicPopupWindow弹出窗体动画效果  
         this.setAnimationStyle(R.style.AnimationPreview);  
-        btn_test = (Button)conentView.findViewById(R.id.btn_test);
-        btn_test.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Toast.makeText(context, "ehheh", Toast.LENGTH_SHORT).show();
-				PopWindowSelectCondition.this.dismiss();  
-			}
-		});
+        btn_select_patient = (Button)contentView.findViewById(R.id.btn_popup_select_patient);
+        btn_select_sample = (Button)contentView.findViewById(R.id.btn_popup_select_sample);
+        btn_select_date = (Button)contentView.findViewById(R.id.btn_popup_select_date);
+        btn_select_patient.setOnClickListener(mClickListener);
+        btn_select_sample.setOnClickListener(mClickListener);
+        btn_select_date.setOnClickListener(mClickListener);
     }  
       
     /** 
