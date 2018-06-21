@@ -3,6 +3,7 @@ package com.yj.professional.activity;
 
 import com.yj.professional.database.MyDatabaseHelper;
 import com.yj.professional.domain.PatientInformation;
+import com.yj.professional.utils.ActivityController;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,6 +15,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -37,8 +39,9 @@ public class LoginActivity extends Activity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 		getActionBar().hide();//隐藏actionbar
-		sp = this.getSharedPreferences("userInfo", Context.MODE_WORLD_READABLE);
+		sp = this.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
 		initWidget();
+		ActivityController.addActivity(this);
 		et_username.setText(sp.getString("username", "admin"));
 		et_password.setText(sp.getString("password", "admin"));
 		if(sp.getBoolean("isAutoLogin", false)){
@@ -96,16 +99,21 @@ public class LoginActivity extends Activity implements OnClickListener{
 			}else{
 				Toast.makeText(LoginActivity.this, "用户信息出错啦~~~", Toast.LENGTH_SHORT).show();
 			}
-//			
 			break;
 		case R.id.btn_turn_register:
 			Intent registerIntent = new Intent(this, RegisterActivity.class);
 			startActivity(registerIntent);
-			this.finish();
+//			this.finish();
 			break;
 		default:
 			break;
 		}
 	}
-
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		
+		return super.onKeyDown(keyCode, event);
+	}
+	
 }

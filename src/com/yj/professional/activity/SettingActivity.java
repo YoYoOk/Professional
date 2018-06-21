@@ -33,7 +33,7 @@ public class SettingActivity extends Activity implements OnClickListener{
 		setContentView(R.layout.activity_setting);
 		getActionBar().hide();//隐藏actionbar
 		initWidget();
-		SharedPreferences sp = getSharedPreferences("userInfo", Context.MODE_WORLD_WRITEABLE);
+		SharedPreferences sp = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
 		username = sp.getString("username", "admin");
 		tv_username.setText(sp.getString("username", "admin"));
 		tv_password.setText(sp.getString("password", "admin"));
@@ -94,7 +94,7 @@ public class SettingActivity extends Activity implements OnClickListener{
 			break;
 		case R.id.btn_logout:
 			//修改密码和注销登录都会回到登录页面，将intent栈中所有的活动销毁
-			getSharedPreferences("userInfo", Context.MODE_WORLD_WRITEABLE).edit().putBoolean("isAutoLogin", false).commit();
+			getSharedPreferences("userInfo", Context.MODE_PRIVATE).edit().putBoolean("isAutoLogin", false).commit();
 //			Toast.makeText(SettingActivity.this, "重新登录", Toast.LENGTH_SHORT).show();
 			loginOut();
 			break;

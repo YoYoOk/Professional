@@ -1,5 +1,8 @@
 package com.yj.professional.activity;
 
+
+import com.yj.professional.utils.ActivityController;
+
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
@@ -33,6 +36,7 @@ public class RegisterActivity extends Activity implements OnClickListener{
 		getActionBar().hide();//隐藏actionbar
 		setContentView(R.layout.activity_register);
 		initWidget();
+		ActivityController.addActivity(this);
 		btn_return.setOnClickListener(this);
 		btn_register.setOnClickListener(this);
 	}
@@ -83,14 +87,14 @@ public class RegisterActivity extends Activity implements OnClickListener{
 			}
 			db.insert("user", null, values);
 			//当前登录 用户  保存到SharedPreference
-			SharedPreferences sp = getSharedPreferences("userInfo", Context.MODE_WORLD_READABLE);
+			SharedPreferences sp = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
 			Editor editor = sp.edit();
 			editor.putString("username", username);
 			editor.putString("password", password);
 			editor.commit();
 			Intent mainIntent = new Intent(this,MainActivity.class);
 			startActivity(mainIntent);
-			finish();
+			ActivityController.finishAll();
 			break;
 		default:
 			break;

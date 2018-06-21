@@ -17,7 +17,8 @@ import android.widget.PopupWindow;
  */
 public class PopWindowSelectCondition extends PopupWindow {
 	private View contentView;  
-	private Button btn_select_patient, btn_select_sample, btn_select_date;
+	private Button btn_select_patient, btn_select_sample;
+//	, btn_select_date;
     public PopWindowSelectCondition(final Activity context, int w, int h, View.OnClickListener mClickListener){  
         LayoutInflater inflater = (LayoutInflater) context  
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);  
@@ -42,10 +43,10 @@ public class PopWindowSelectCondition extends PopupWindow {
         this.setAnimationStyle(R.style.AnimationPreview);  
         btn_select_patient = (Button)contentView.findViewById(R.id.btn_popup_select_patient);
         btn_select_sample = (Button)contentView.findViewById(R.id.btn_popup_select_sample);
-        btn_select_date = (Button)contentView.findViewById(R.id.btn_popup_select_date);
+//        btn_select_date = (Button)contentView.findViewById(R.id.btn_popup_select_date);
         btn_select_patient.setOnClickListener(mClickListener);
         btn_select_sample.setOnClickListener(mClickListener);
-        btn_select_date.setOnClickListener(mClickListener);
+//        btn_select_date.setOnClickListener(mClickListener);
     }  
       
     /** 

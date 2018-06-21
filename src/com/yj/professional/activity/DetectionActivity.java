@@ -18,6 +18,7 @@ import com.yj.professional.domain.MyPointF;
 import com.yj.professional.popupwindow.PopWindowSelectBluetooth;
 import com.yj.professional.service.ChartService;
 import com.yj.professional.utils.ConvertUtils;
+import com.yj.professional.utils.JniCall;
 import com.yj.professional.utils.SaveActionUtils;
 import com.yj.professional.view.DisplayResultView;
 
@@ -73,6 +74,7 @@ import android.widget.Toast;
 public class DetectionActivity extends Activity implements OnClickListener, OnItemClickListener{
 	private static final int REQUEST_ENABLE_BT = 1;//选择是否打开蓝牙对话框
 	private static final int REQUEST_PARAM = 2;//请求参数配置
+	private boolean isHasTemp = true;
 	private Button btn_start_detection, btn_stop_detection;//开始检测按钮
 	private ImageButton btn_return, btn_bluetooth;//顶部返回按钮，蓝牙弹出窗口按钮
 	private EditText et_detect_descri;//当前检测描述
@@ -97,7 +99,7 @@ public class DetectionActivity extends Activity implements OnClickListener, OnIt
 	private BluetoothGattService mnotyGattService;
 	private BluetoothGattCharacteristic readCharacteristic;	//读数据
 	private BluetoothGattService readMnotyGattService;
-	private static String mDeviceAddress = "00:15:83:00:80:FB";// 要连接的目标蓝牙设备的地址 默认的
+	private static String mDeviceAddress = "00:15:83:00:B3:4B";// 要连接的目标蓝牙设备的地址 默认的
 	private LeDeviceListAdapter mLeDeviceListAdapter;//蓝牙搜索列表适配器
 	private boolean mScanning;//默认值是false
 	private boolean mConnectedService = false;//是否找到服务  只有这个为true才算是真正连接上可以发送接收数据了
@@ -105,7 +107,7 @@ public class DetectionActivity extends Activity implements OnClickListener, OnIt
 	private static final long SCAN_PRRIOD = 10000;//10s后停止扫描
 	/* 发送数据相关 */
 	private String sendString = "861101011027e02e3202800200020004050068";
-	private byte[] sendData = ConvertUtils.hexStringToBytes("861101011027e02e3202800200020400050068");// 要发送的数据 字节数据 故此先将16进制字符串转换成字节发送
+	private byte[] sendData = ConvertUtils.hexStringToBytes("861101011027e02e3202800200020a00050068");// 要发送的数据 字节数据 故此先将16进制字符串转换成字节发送
 	private byte[] sendData_real = ConvertUtils.hexStringToBytes("861101011027e02e3202800200020000050068");
 	private byte[] sendData_stop = ConvertUtils.hexStringToBytes("8603030168");// 要发送停止扫描的数据 表示用来
 	private boolean isFirstSend;//是否是第一次发送
@@ -129,7 +131,8 @@ public class DetectionActivity extends Activity implements OnClickListener, OnIt
 	private float maxValue;//最大值
 	private Date currentDate, beforeDate;
 	String tempStr = "";// 测试用
-
+	private String cacheStr;
+	private boolean isCache;
 	private int[] frequency_value = { 100, 120, 50 };// 从参数配置传上来的起止频率 步进频率 默认为100,120,50
 	private int pointCount;//一次多少个点
 	private int times = 0;//默认是10次
@@ -168,9 +171,10 @@ public class DetectionActivity extends Activity implements OnClickListener, OnIt
 		mBluetoothAdapter = bluetoothManager.getAdapter();//蓝牙
 		prepareData();//准备list
 		drawlineInit();//绘图的一些定义
-		sp = getSharedPreferences("userInfo", Context.MODE_WORLD_READABLE);////查询是否有默认的蓝牙  去SharedPreference
-		mDeviceAddress = sp.getString("address", "00:15:83:00:80:FB");
-		sendData_real = ConvertUtils.hexStringToBytes(sp.getString("defaultParams", "861101011027e02e3202800200020000050068"));//0次
+		sp = getSharedPreferences("userInfo", Context.MODE_PRIVATE);////查询是否有默认的蓝牙  去SharedPreference
+		mDeviceAddress = sp.getString("address", "00:15:83:00:B3:4B");
+		sendString = sp.getString("defaultParams", "861101011027e02e3202800200020000050068");
+		sendData_real = ConvertUtils.hexStringToBytes(sendString);//0次
 		handler = new MyHandler();//自定义的消息队列  为了画图
 		registerReceiver(mGattUpdateReceiver, makeGattUpdateIntentFilter());//注册监听蓝牙一些服务的广播
 		//注册服务 启动服务 ---蓝牙的服务
@@ -258,7 +262,7 @@ public class DetectionActivity extends Activity implements OnClickListener, OnIt
 		if(!descri.equals("")){
 			values.put("descri", descri);
 		}
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH_mm_ss");
 		detectionDateStr = format.format(new Date());
 		displayView.getTv_detection_date().setText(detectionDateStr);
 		values.put("createTime", detectionDateStr);
@@ -353,7 +357,7 @@ public class DetectionActivity extends Activity implements OnClickListener, OnIt
 		mService_result = new ChartService(DetectionActivity.this);
 		mService_result.setXYMultipleSeriesDataset(title_result);
 		mService_result.setXYMultipleSeriesRenderer("时间", "值");
-		mService_result.getRenderer().setYAxisMin(0d);
+//		mService_result.getRenderer().setYAxisMin(0d);
 		mService_result.getRenderer().setXAxisMin(6d);
 		mView_result = mService_result.getGraphicalView();
 		//上面显示结果曲线，下面显示最终曲线，， 然后等到扫描完毕之后  覆盖下面的曲线 然后将其改成计算的参数值
@@ -386,8 +390,22 @@ public class DetectionActivity extends Activity implements OnClickListener, OnIt
 			break;
 		case R.id.btn_connect_bt://连接蓝牙
 			popwindow.dismiss();
-			mBluetoothLeService.connect(mDeviceAddress);
-			btn_bluetooth.setBackground(getResources().getDrawable(R.drawable.bluetooth_connecting));//点击之后就开始变黄 表示在连接中
+			if(!mConnectedService){
+				mBluetoothLeService.disconnect();
+				mBluetoothLeService.connect(mDeviceAddress);
+				btn_bluetooth.setBackgroundResource(R.drawable.bluetooth_connecting);
+				mHandler = new Handler();
+//				mHandler.postDelayed(new Runnable() {
+//					@Override
+//					public void run() {
+//						if(!mConnectedService){
+//							mBluetoothLeService.disconnect();
+//						}
+//					}
+//				}, CONNECT_PRRIOD);//如果等待5s之后还是没有连接 则先断开
+			}else{
+				mBluetoothLeService.disconnect();
+			}
 			break;
 		case R.id.btn_disconnect_bt://断开蓝牙
 			popwindow.dismiss();
@@ -445,6 +463,14 @@ public class DetectionActivity extends Activity implements OnClickListener, OnIt
 			}
 		}
 	}
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		unbindService(mServiceConnection);
+		mBluetoothLeService = null; 
+		unregisterReceiver(mGattUpdateReceiver);//取消注册广播
+	}
+	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
 		switch (requestCode) {
@@ -533,42 +559,76 @@ public class DetectionActivity extends Activity implements OnClickListener, OnIt
         else if (BluetoothLeService.ACTION_DATA_AVAILABLE.equals(action)) {
             	byte[] data = intent.getByteArrayExtra(BluetoothLeService.EXTRA_DATA);
             	//有数据来了  短路逻辑  若包含就去判断包含的这个是不是最后的
-            	tempStr = ConvertUtils.bytesToHexString(data);
+            	cacheStr = ConvertUtils.bytesToHexString(data);
+            	if(isCache){//有缓存的话 
+            		tempStr += cacheStr;
+            		if(!(tempStr.length() % 2 == 0)){
+            			isCache = true;
+            			return;
+            		}
+            	}else{//没有缓存
+            		if(!(cacheStr.length() % 2 == 0)){
+            			isCache = true;
+            			tempStr += cacheStr;
+            			return;
+            		}else{
+            			isCache = false;
+            			tempStr = cacheStr;
+            		}
+            	}
+//            	Log.e("#####", tempStr);
             	if(!tempStr.contains("FF01")){//不管是2个字节还是4个字节  应该说是不管是多少字节的数据
-            		for(int i = 0; i < data.length; i++){
+        			for(int i = 0; i < data.length; i++){
             			listByte.add(data[i]);
             		}
+        			tempStr = "";
+        			return;
             	}else{//包含 ff01--还得判断此ff01是不是结尾的那个ff01//判断此ff01是不是真的结尾的那个ff01 
+//            		Log.e("length", tempStr + "--" + data.length);
             		if(tempStr.indexOf("FF01") % 2 != 0){
-            			Log.d("######", "#######" + tempStr + "#######"+listByte.size());
             			for(int i = 0; i < data.length; i++){
                 			listByte.add(data[i]);
                 		}
+            			tempStr = "";
+            			return;
             		}else{
-	            		byte[] tempByte = ConvertUtils.hexStringToBytes(tempStr.substring(0, tempStr.indexOf("FF01")));
+            			byte[] tempByte = ConvertUtils.hexStringToBytes(tempStr.substring(0, tempStr.indexOf("FF01")));
+            			//判断是不是以ff01结尾的 若是的话 说明后面没有数据了 再添加了
 	            		//极有可能 tempByte为空  因为是以ff01起头的  ---20171121 报错了很多次 脑子呆笨没有发现
 	            		if(tempByte != null){
 		            		for(int i = 0; i < tempByte.length; i++){
 		            			listByte.add(tempByte[i]);
 		            		}
+		            		Log.e("#####", "添加FF01之前的");
 	            		}
-	//            		//？？？如何判断到底ff01是最后还是不是最后
+	//            		//如何判断到底ff01是最后还是不是最后
+	            		//丢数据了
+	            		int tempSize = listByte.size();
+	            		double tempData = (listByte.get(tempSize - 2) & 0xff) * 256 + (listByte.get(tempSize - 1) & 0xff);
 	            		if(listByte.size() < (pointCount*2)){//说明数据中包含了 ff01
-	            			tempByte = ConvertUtils.hexStringToBytes("FF01");
-	            			Log.d("######", "#######"+listByte.size());
-	            			for(int i = 0; i < tempByte.length; i++){
-		            			listByte.add(tempByte[i]);
+	            			if(Math.abs(tempData - 65281) > 1000){//前一个和这个数据差距在1000超过1000
+		            			//说明丢数据了
+	            				listByte.removeAll(listByte);
+	            				Log.e("#####", "丢数据了");
+	            				return;
+		            		}else{
+		            			tempByte = ConvertUtils.hexStringToBytes("FF01");
+		            			for(int i = 0; i < tempByte.length; i++){
+			            			listByte.add(tempByte[i]);
+			            		}
 		            		}
 	            		}else{
+	            			Log.e("######goule", "#######goule"+listByte.size());
 	            			processBuffer();
+	            			return;
 	            		}
-	            		//判断是不是以ff01结尾的 若是的话 说明后面没有数据了 再添加了
 	            		if(!tempStr.endsWith("FF01")){
 	            			tempByte = ConvertUtils.hexStringToBytes(tempStr.substring(tempStr.indexOf("FF01") + 4));
 	            			for(int i = 0; i < tempByte.length; i++){
 	                			listByte.add(tempByte[i]);
 	                		}
-	            		}//此处仍然是有漏洞的，，，因为有可能接收到的数据并不是偶数  怎么破？----于20171121
+	            		}//TODO 此处仍然是有漏洞的，，，因为有可能接收到的数据并不是偶数  怎么破？----于20171121
+	            		tempStr = "";
             		}
             	}
             }
@@ -579,6 +639,13 @@ public class DetectionActivity extends Activity implements OnClickListener, OnIt
 		// 已经来了一次扫描的数据了// 说明一次扫描正常结束 现在只考虑正常的情况下	//每次给yList添加数据之前都清空一次
 		yList.removeAll(yList);
 		yListTemp.removeAll(yListTemp);
+		if(isHasTemp){//要移除最后两个字节
+			int tempSize = listByte.size();
+			if(tempSize != 0){
+				listByte.remove(tempSize - 1);
+				listByte.remove(tempSize - 2);
+			}
+		}
 //		source = new double[listByte.size()/2];//每次都创建太消耗内存了   解决方案在发送的时候根据x轴的数据长度创建数组
 		for (int i = 0, j = 0; i < listByte.size() - 1; i = i + 2, j++) {
 //			yList.add((listByte.get(i) & 0xff) * 256 + (listByte.get(i + 1) & 0xff));//此处在添加滤波之后修改
@@ -606,7 +673,7 @@ public class DetectionActivity extends Activity implements OnClickListener, OnIt
  				interval_time = interval_time / 1000;
  				pointf.x = interval_time;
  				// 一定要在求两次时间之后，不然会影响凝血曲线时间的判断//画图之前计算最值之前先进行滤波处理//输入必须是double类型？
- 				source = process_Data(source);//去对数据简单滤波
+ 				source = new JniCall().process_Data(source);//去对数据简单滤波
  				for(int i = 0; i < source.length; i++){
  					yList.add(source[i]);
  				}//yList和yListFilter中存储的都是滤波之后的数据，，yList是去画曲线，yListFilter是去保存
@@ -626,8 +693,10 @@ public class DetectionActivity extends Activity implements OnClickListener, OnIt
  				if (flag_result) {
  					mService_result.updateChart(interval_time, maxValue);
  					mService_result.getRenderer().setXAxisMax(interval_time);//设置最大值就是当前时间最大值
- 					mService_result.getRenderer().setYAxisMax(maxValue + maxValue*0.06); //设置y的最大值就是当前值+ 10%
+ 					mService_result.getRenderer().setXAxisMin(4d);//
+ 					mService_result.getRenderer().setYAxisMax(maxValue + maxValue*0.01); //设置y的最大值就是当前值+ 10%
  					mService_result.getRenderer().setYAxisMin(maxValue - maxValue*0.01);//设置y的最小值，，不然结果显示看不出
+// 					mService_result.getRenderer().setYAxisMin(maxValue - 0.01);
  					flag_result = false;// 每次画完就停止画
  				}
  				break;
@@ -779,10 +848,10 @@ public class DetectionActivity extends Activity implements OnClickListener, OnIt
         TextView deviceName;
         TextView deviceAddress;
     }
-	//Start    Java的JNI技术
+/*	//Start    Java的JNI技术
 	static{
 		System.loadLibrary("CALLC");
 	}
 	public native double[] process_Data(double[] source);//本地方法 对数据滤波处理的算法
 	//End      Java的JNI技术
-}
+*/}
